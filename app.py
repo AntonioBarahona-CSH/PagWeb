@@ -1,9 +1,9 @@
-from flask import Flask, request, redirect, render_template
+from flask import Flask, request, render_template
 import sqlite3
 
 app = Flask(__name__)
 
-# Crea la base de datos si no existe
+# Crea la base de datos si no existe (esto se ejecuta siempre, incluso en Render)
 def init_db():
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
@@ -25,6 +25,9 @@ def init_db():
     ''')
     conn.commit()
     conn.close()
+
+# Se ejecuta SIEMPRE, incluso en producción
+init_db()
 
 @app.route('/')
 def index():
@@ -51,7 +54,8 @@ def submit():
     c.execute('''
         INSERT INTO formulario 
         (Tunombre, Numid, Escuela, Edad, Maestro, Correo, sexo, Numtel, Nacimiento, Direccion, aceptar)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', data)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ''', data)
     conn.commit()
     conn.close()
 
@@ -66,8 +70,6 @@ def ver_datos():
     conn.close()
     return render_template('ver_datos.html', datos=datos)
 
-
+# Este bloque solo se ejecuta localmente
 if __name__ == '__main__':
-    init_db()
     app.run(debug=True)
-
