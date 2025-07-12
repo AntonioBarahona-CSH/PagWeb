@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FICHA DE MATRICULA</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <h1 class="portada">Tarea de formulario</h1>
+    <h2 class="portada"> Materia: Informatica</h2>
+    <h2 class="portada"> Tarea hecha por: Antonio Arévalo</h2>
+    <h2 class="portada"> Materia: Informatica</h2>
+    <h2 class="portada"> Freshman matutino</h2>
+
+    <hr />
+
+    <form action="/submit" method="post">
+        <h1 class="portada">
+            Ingresa tus datos para matricularte
+        </h1>
+
+        <div class="Tunombre">
+            <label for="Tunombre">Nombre Completo: </label>
+            <input type="text" id="Tunombre" name="Tunombre" placeholder="Ingrese su nombre completo" />
+        </div>
+
+        <br/>
+
+        <div class="Numid">
+            <label for="Numid">Número según documeto (DUI, PASAPORTE, ID):</label>
+            <input type="text" id="Numid" name="Numid" placeholder="Ejem: 00716331-8" />
+        </div>
+
+        <br/>
+
+        <div class="Escuela">
+            <label for="Escuela">Escuela donde estudió el año anterior:</label>
+            <input type="text" id="Escuela" name="Escuela" placeholder="Ingrese el nombre" />
+        </div>
+
+        <br/>
+
+        <div class="Edad">
+            <label for="Edad">Edad:</label>
+            <input type="number" id="Edad" name="Edad" placeholder="Ingrese su Edad" />
+        </div>
+
+        <br/>
+
+        <div class="Maestro">
+            <label for="Maestro">Ingrese el nombre de su orientador anterior:</label>
+            <input type="text" id="Maestro" name="Maestro" placeholder="Ingrese el nombre" />
+        </div>
+
+        <br/>
+
+        <div class="Correo">
+            <label for="Correo">Ingresa el correo institucional:</label>
+            <input type="email" id="Correo" name="Correo" placeholder="Ejem: ola@outlook.com" />
+        </div>
+
+        <br/>
+
+        <div class="Genero">
+            <label><b>Género-Sexualidad:</b></label>
+            <label><input type="radio" name="sexo" value="N/A" /> N/A</label>
+            <label><input type="radio" name="sexo" value="Masculino" /> Masculino</label>
+            <label><input type="radio" name="sexo" value="Femenino" /> Femenino</label>
+            <label><input type="radio" name="sexo" value="No binario" /> No binario</label>
+        </div>
+
+        <br/>
+
+        <div class="Numtel">
+            <label for="Numtel">Número de teléfono:</label>
+            <input type="tel" id="Numtel" name="Numtel" placeholder="Ingrese su numero de tel" />
+        </div>
+
+        <br/>
+
+        <div class="Nacimiento">
+            <label for="Nacimiento">Ingrese su fecha de nacimiento:</label>
+            <input type="date" id="Nacimiento" name="Nacimiento" />
+        </div>
+
+        <br/>
+
+        <div class="Direccion">
+            <label for="Direccion">Ingrese su dirección:</label>
+            <input type="text" id="Direccion" name="Direccion" placeholder="Ejem: Psje 3, casa 2" />
+        </div>
+
+        <br/>
+
+        <p class="Normas">
+            <b>HE LEIDO Y ACEPTO LAS
+                <a href="https://www.utec.edu.sv/home/normas_y_reglamentos" target="_blank">NORMAS Y REGLAMENTOS</a>
+            </b>
+            <input type="radio" id="ACEPTO TODO" name="aceptar" value="ACEPTO TODO" />
+            <label for="ACEPTO TODO">ACEPTO TODO</label>
+
+            <input type="radio" id="PREFIERO NO DECIR" name="aceptar" value="PREFIERO NO DECIR" />
+            <label for="PREFIERO NO DECIR">PREFIERO NO DECIR</label>
+        </p>
+
+        <div class="Enviar">
+            <button class="Envio" type="submit">ENVIAR TODO</button>
+        </div>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Datos Guardados</title>
+</head>
+<body>
+    <h1>Datos en la base de datos</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Documento</th>
+            <th>Escuela</th>
+            <th>Edad</th>
+            <th>Maestro</th>
+            <th>Correo</th>
+            <th>Sexo</th>
+            <th>Teléfono</th>
+            <th>Nacimiento</th>
+            <th>Dirección</th>
+            <th>Aceptar</th>
+        </tr>
+        {% for fila in datos %}
+        <tr>
+            {% for valor in fila %}
+            <td>{{ valor }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
