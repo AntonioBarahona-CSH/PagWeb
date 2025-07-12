@@ -1,15 +1,22 @@
 from flask import Flask, request, render_template
-import sqlite3
+import psycopg2
+import os
 
 app = Flask(__name__)
 
-# Crea la base de datos si no existe (esto se ejecuta siempre, incluso en Render)
+# Obtener URL de conexión de Render (usa variable de entorno)
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+def get_connection():
+    return psycopg2.connect(DATABASE_URL)
+
+# Crear tabla si no existe
 def init_db():
-    conn = sqlite3.connect('database.db')
+    conn = get_connection()
     c = conn.cursor()
     c.execute('''
         CREATE TABLE IF NOT EXISTS formulario (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL PRIMARY KEY,
             Tunombre TEXT,
             Numid TEXT,
             Escuela TEXT,
@@ -26,7 +33,6 @@ def init_db():
     conn.commit()
     conn.close()
 
-# Se ejecuta SIEMPRE, incluso en producción
 init_db()
 
 @app.route('/')
@@ -49,12 +55,12 @@ def submit():
         request.form['aceptar']
     )
 
-    conn = sqlite3.connect('database.db')
+    conn = get_connection()
     c = conn.cursor()
     c.execute('''
         INSERT INTO formulario 
         (Tunombre, Numid, Escuela, Edad, Maestro, Correo, sexo, Numtel, Nacimiento, Direccion, aceptar)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     ''', data)
     conn.commit()
     conn.close()
@@ -63,13 +69,12 @@ def submit():
 
 @app.route('/ver-datos')
 def ver_datos():
-    conn = sqlite3.connect('database.db')
+    conn = get_connection()
     c = conn.cursor()
     c.execute('SELECT * FROM formulario')
     datos = c.fetchall()
     conn.close()
     return render_template('ver_datos.html', datos=datos)
 
-# Este bloque solo se ejecuta localmente
 if __name__ == '__main__':
     app.run(debug=True)
